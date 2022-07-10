@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h3>Results for your search</h3>
+    {% for post in posts %}
+    <ul>
+        <li>
+            <h4><a href="/{{post.id}}/">{{post.title}}</a></h4>
+            By: <a href="user/{{post.author.id}}/">{{post.author.first_name}} {{post.author.last_name}}</a><br>
+            {{post.created_at}}<br><br>
+            {{post.snippet}} <a href="/{{post.id}}/">Read more</a>
+        </li>
+    </ul>
+    {% endfor %}
+</body>
+</html>
