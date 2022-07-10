@@ -22,16 +22,17 @@
     <a href="/create/">Create New Post</a><br>
     {% endif %}
     <h1>Blog Posts</h1><hr>
+    <!--
     <form action="" method="post">
         {% csrf_token %}
         <input type="text" name="search_post" placeholder="Search for any post">
         <button type="submit">Search</button>
-    </form>
+    </form>-->
     {% for post in object_list %}
     <ul>
         <li>
             <h4><a href="/{{post.id}}/">{{post.title}}</a></h4>
-            By: <a href="/user/{{post.author.id}}/">{{post.author.first_name}} {{post.author.last_name}}</a><br>
+            By: {{post.author.first_name}} {{post.author.last_name}}<br>
             {{post.created_at}}<br><br>
             {{post.snippet}} <a href="/{{post.id}}/">Read more</a>
         </li>
