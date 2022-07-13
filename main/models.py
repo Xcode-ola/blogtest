@@ -13,7 +13,6 @@ class Blog(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     snippet = models.CharField(max_length=255, default="Click the link to read more")
     body = RichTextField(blank=True, null=True)
-    #body = models.TextField()
 
     def get_absolute_url(self):
         return reverse('index')

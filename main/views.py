@@ -1,9 +1,12 @@
-from django.shortcuts import render, redirect
+from turtle import title
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from main.forms import CreateNewPost, UpdatePost, CommentSection
 from main.models import Blog, Comment
+from django.contrib.auth.models import auth, User
+
 
 # Create your views here.
 def base(response):
@@ -13,6 +16,16 @@ class index(ListView):
     model = Blog
     template_name = 'main/index.html'
     ordering = ['-created_at']
+    paginate_by = 10
+
+class UserPost(ListView):
+    model = Blog
+    template_name = 'main/user_posts.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Blog.objects.filter(author=user.id).order_by('-created_at')
 
 class create(CreateView):
     model = Blog
@@ -44,10 +57,3 @@ def blogpost(response, pk):
     else:
         form = CommentSection()
         return render(response, 'main/post.html', {'blog':blog, 'form':form})
-
-def public_profile(response, id):
-    post = Blog.objects.filter(author = id)
-    return render(response, 'main/public_profile.html', {'post':post})
-
-def search(response):
-    return render(response, 'main/search.html')
