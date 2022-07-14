@@ -24,7 +24,7 @@
 </style>
 <body>
     <header><h2>{{blog.title}}</h2></header>
-    By: <a href="/user/{{post.author}}/">{{post.author.first_name}} {{post.author.last_name}}</a><br>
+    By: <a href="/user/{{blog.author}}/">{{blog.author.first_name}} {{blog.author.last_name}}</a><br>
     {{blog.created_at}}<br>
     {% if user.is_authenticated %}
         {% if user.id == blog.author.id %}

@@ -20,10 +20,11 @@
     <h3>Create Account</h3>
     <hr>
     <form action="" method="post">
-        {% for message in messages %}
-        {{message}}
-        {% endfor %}
         {% csrf_token %}
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+        <br>
         <input type="email" name="email" placeholder="Email"><br><br>
         <input type="text" name="username" placeholder="Username"><br><br>
         <input type="password" name="password1" placeholder="Password"><br><br>

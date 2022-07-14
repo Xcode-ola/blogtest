@@ -35,7 +35,7 @@ def register(response):
 
                 #instant profile creation for new user
                 new_user = User.objects.get(username=username)
-                new_profile = Profile.objects.create(user=new_user)
+                new_profile = Profile(user=new_user)
                 new_profile.save()
                 return redirect('edit_profile')
 
