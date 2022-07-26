@@ -20,6 +20,9 @@
     <h3><u> Log In </u></h3>
     <form method="post">
         {% csrf_token %}
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
         <p><input type="text" name="username" placeholder="Username"></p>
         <input type="password" name="password" placeholder="Password"><br><br>
         <button type="submit">Log in</button>
